@@ -70,7 +70,7 @@
                         <div>
                             <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-maroon">{{ __('messages.events.call_us') }}</dt>
                             <dd class="mt-1 text-sm text-brand-ink/75">
-                                <a href="tel:{{ preg_replace('/\s+/', '', $settings['contact_phone']) }}" class="font-semibold text-brand-maroon hover:underline">
+                                <a href="tel:{{ preg_replace('/\s+/', '', $settings['contact_phone']) }}" class="inline-flex min-h-[24px] items-center font-semibold text-brand-maroon hover:underline">
                                     {{ $settings['contact_phone'] }}
                                 </a>
                             </dd>

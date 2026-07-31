@@ -26,19 +26,19 @@
         <div class="container-x flex h-9 items-center justify-between gap-4 overflow-hidden whitespace-nowrap text-xs">
             <div class="flex min-w-0 items-center gap-5">
                 @if($settings['contact_phone'] ?? null)
-                    <a href="tel:{{ preg_replace('/\s+/', '', $settings['contact_phone']) }}" class="flex items-center gap-1.5 hover:text-brand-gold-light">
+                    <a href="tel:{{ preg_replace('/\s+/', '', $settings['contact_phone']) }}" class="flex min-h-[24px] items-center gap-1.5 hover:text-brand-gold-light">
                         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.6a1 1 0 01.98.8l.8 3.2a1 1 0 01-.5 1.1L8 9a12 12 0 007 7l.9-1.5a1 1 0 011.1-.5l3.2.8a1 1 0 01.8 1V19a2 2 0 01-2 2A16 16 0 013 5z"/></svg>
                         {{ $settings['contact_phone'] }}
                     </a>
                 @endif
                 @if($settings['contact_email'] ?? null)
-                    <a href="mailto:{{ $settings['contact_email'] }}" class="flex items-center gap-1.5 hover:text-brand-gold-light">
+                    <a href="mailto:{{ $settings['contact_email'] }}" class="flex min-h-[24px] items-center gap-1.5 hover:text-brand-gold-light">
                         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/></svg>
                         {{ $settings['contact_email'] }}
                     </a>
                 @endif
                 @if($headerWhatsapp = whatsapp_url(__('messages.whatsapp.floating_intro')))
-                    <a href="{{ $headerWhatsapp }}" target="_blank" rel="noopener" class="flex items-center gap-1.5 hover:text-brand-gold-light">
+                    <a href="{{ $headerWhatsapp }}" target="_blank" rel="noopener" class="flex min-h-[24px] items-center gap-1.5 hover:text-brand-gold-light">
                         <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3.5A8.5 8.5 0 004.6 16.2L3.5 20.5l4.4-1.1A8.5 8.5 0 1012 3.5zm0 15.3a6.8 6.8 0 01-3.5-.95l-.25-.15-2.6.68.7-2.53-.16-.26A6.8 6.8 0 1112 18.8zm3.7-5.1c-.2-.1-1.2-.6-1.4-.65s-.32-.1-.46.1-.53.65-.64.78-.23.15-.43.05a5.6 5.6 0 01-1.64-1 6.2 6.2 0 01-1.14-1.42c-.12-.2 0-.32.09-.42s.2-.23.3-.35a1.4 1.4 0 00.2-.33.37.37 0 000-.35c0-.1-.46-1.1-.63-1.5s-.33-.34-.46-.34h-.4a.76.76 0 00-.55.26 2.3 2.3 0 00-.72 1.7 4 4 0 00.84 2.12 9.1 9.1 0 003.5 3.1c.49.2.87.33 1.17.43a2.8 2.8 0 001.3.08 2.1 2.1 0 001.4-1 1.7 1.7 0 00.12-1c-.05-.08-.18-.13-.38-.23z"/></svg>
                         {{ __('messages.contact.whatsapp_label') }}
                     </a>
