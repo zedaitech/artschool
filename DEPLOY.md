@@ -155,8 +155,12 @@ centres, hero slides, events, gallery and Site Settings should all be there.
   `.env`, `database/` and `vendor/` are downloadable.
 - **PHP 8.3** (the installed dependencies require >= 8.3), with `intl`, `gd`,
   `mbstring`, `zip` and `pdo_mysql` enabled.
-- **Build assets locally** (`npm run build`) and upload `public/build/` — it is
-  git-ignored and there is no Node on shared plans.
+- **Vite output is committed** (`public/build/`), because there is no Node on
+  shared plans. After changing anything in `resources/css` or `resources/js`,
+  run `npm run build` and commit the result, or the server keeps serving the
+  old CSS/JS. If `public/build/manifest.json` is missing on the server, every
+  public page returns 500 while `/admin` keeps working — Filament ships its own
+  pre-built assets and does not go through Vite.
 - **Run `php artisan storage:link`** over SSH, or images uploaded through the
   admin panel will 404.
 - Set `APP_ENV=production`, `APP_DEBUG=false`, a fresh `APP_KEY`
