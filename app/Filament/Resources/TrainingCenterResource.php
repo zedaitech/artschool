@@ -39,7 +39,7 @@ class TrainingCenterResource extends Resource
                     Forms\Components\TextInput::make('name')
                         ->label('Location')
                         ->required()
-                        ->helperText('The place, e.g. “Deralakatte” or “Kankanady, Mangalore”.')
+                        ->helperText('The place, e.g. “Deralakatte” or “Kankanady, Mangaluru”.')
                         ->live(onBlur: true)
                         ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('slug', Str::slug($state)))
                         ->columnSpanFull(),

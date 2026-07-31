@@ -9,7 +9,7 @@ class EventSeeder extends Seeder
 {
     public function run(): void
     {
-        $address = "Shree Narayana Guru School of Art\n1-284/1/4, Shree Mahaguru Krupa,\nAdkabail Road, Adka, Kotekar,\nVTC: Mangalore, PO: Kotekar,\nDistrict: Dakshina Kannada – 575022\nKarnataka, India";
+        $address = "Shree Narayana Guru School of Art\n1-284/1/4, Shree Mahaguru Krupa,\nAdkabail Road, Adka, Kotekar,\nVTC: Mangaluru, PO: Kotekar,\nDistrict: Dakshina Kannada – 575022\nKarnataka, India";
 
         $bodyEn = <<<'HTML'
 <p>On the occasion of the birth anniversary of <strong>Bhagavan Shree Narayana Guru</strong>, Shree Narayana Guru School of Art, Mangaluru — a Government of India MSME (Udyam) registered art education institution — presents <strong>Shree Guru Varna Vaibhava&nbsp;–&nbsp;2026</strong>, a state level drawing competition for school students.</p>

@@ -5,6 +5,7 @@
         ['route' => 'gallery', 'label' => __('messages.nav.gallery')],
         ['route' => 'events.index', 'label' => __('messages.nav.events')],
         ['route' => 'contact', 'label' => __('messages.nav.contact')],
+        ['url' => route('contact').'#donate', 'label' => __('messages.donate.nav')],
     ];
 @endphp
 <footer class="relative mt-24 overflow-hidden bg-maroon-gradient text-white/80">
@@ -25,6 +26,14 @@
                 </div>
                 <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/70">{{ __('messages.footer.about') }}</p>
                 <div class="mt-6">@include('partials.social-icons')</div>
+
+                {{-- Registration mark: the logo is drawn for white, so it keeps
+                     its own light chip rather than sitting on the maroon. --}}
+                <div class="mt-7">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-white/45">{{ __('messages.msme.footer_label') }}</p>
+                    <img src="{{ asset('images/msme-registered.jpg') }}" alt="{{ __('messages.msme.label') }}" loading="lazy"
+                         class="mt-2 h-14 w-auto rounded-lg bg-white p-1.5">
+                </div>
             </div>
 
             {{-- Links --}}
@@ -33,7 +42,7 @@
                 <ul class="mt-5 space-y-3 text-sm">
                     @foreach($footerNav as $item)
                         <li>
-                            <a href="{{ route($item['route']) }}" class="inline-flex min-h-[28px] items-center gap-2 text-white/70 transition hover:text-brand-gold-light">
+                            <a href="{{ $item['url'] ?? route($item['route']) }}" class="inline-flex min-h-[28px] items-center gap-2 text-white/70 transition hover:text-brand-gold-light">
                                 <span class="h-1 w-1 rounded-full bg-brand-gold"></span>{{ $item['label'] }}
                             </a>
                         </li>

@@ -99,6 +99,9 @@
         </div>
     </section>
 
+    {{-- Support us --}}
+    @include('partials.donate')
+
     {{-- Map --}}
     @if($settings['map_embed'] ?? null)
         <section class="pb-20">

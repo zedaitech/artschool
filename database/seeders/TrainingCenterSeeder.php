@@ -48,7 +48,7 @@ class TrainingCenterSeeder extends Seeder
             ],
             [
                 'slug' => 'kankanady-mangalore',
-                'name' => ['en' => 'Kankanady, Mangalore', 'kn' => 'ಕಂಕನಾಡಿ, ಮಂಗಳೂರು'],
+                'name' => ['en' => 'Kankanady, Mangaluru', 'kn' => 'ಕಂಕನಾಡಿ, ಮಂಗಳೂರು'],
                 'venue' => ['en' => 'Shree Brahma Baidarkala Garadi Kshetra', 'kn' => 'ಶ್ರೀ ಬ್ರಹ್ಮ ಬೈದರ್ಕಳ ಗರಡಿ ಕ್ಷೇತ್ರ'],
                 'day' => 'friday',
                 'start_time' => '17:15',
@@ -85,7 +85,7 @@ class TrainingCenterSeeder extends Seeder
             ],
             [
                 'slug' => 'kottara-mangalore',
-                'name' => ['en' => 'Kottara, Mangalore', 'kn' => 'ಕೊಟ್ಟಾರ, ಮಂಗಳೂರು'],
+                'name' => ['en' => 'Kottara, Mangaluru', 'kn' => 'ಕೊಟ್ಟಾರ, ಮಂಗಳೂರು'],
                 'venue' => ['en' => 'Shree Krishna Jnanodaya Bhajana Mandira', 'kn' => 'ಶ್ರೀ ಕೃಷ್ಣ ಜ್ಞಾನೋದಯ ಭಜನಾ ಮಂದಿರ'],
                 'day' => 'sunday',
                 'start_time' => '11:00',

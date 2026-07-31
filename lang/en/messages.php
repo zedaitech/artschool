@@ -13,7 +13,7 @@ return [
     // Global
     'school_name' => 'Shree Narayana Guru School of Art',
     'school_short' => 'SNSA',
-    'school_city' => 'Mangalore',
+    'school_city' => 'Mangaluru',
     'school_type' => 'A Hobby Art Training Institution',
     'established' => 'Established 2018',
     'tagline' => 'Let’s Nurture Creativity… Let Talent Blossom!',
@@ -32,7 +32,7 @@ return [
     'home' => [
         'welcome_eyebrow' => 'Welcome',
         'welcome_title' => 'Welcome to Shree Narayana Guru School of Art',
-        'welcome_text' => 'Shree Narayana Guru School of Art, Mangalore is a hobby art training institution that welcomes everyone with a passion for art. We believe that creativity has no boundaries, and every individual deserves the opportunity to learn, grow and express themselves through art.',
+        'welcome_text' => 'Shree Narayana Guru School of Art, Mangaluru is a hobby art training institution that welcomes everyone with a passion for art. We believe that creativity has no boundaries, and every individual deserves the opportunity to learn, grow and express themselves through art.',
         'welcome_text_2' => 'Our institution is open to children, youth and adults, regardless of caste, religion, creed, language, gender or social background. We provide a friendly, respectful and inclusive learning environment where everyone is encouraged to discover their artistic potential.',
         'welcome_text_3' => 'Inspired by the timeless teachings of Sree Narayana Guru, our institution promotes the values of equality, humanity, education and mutual respect. We believe that art has the power to unite people, build character and inspire positive change.',
         'centers_eyebrow' => 'Where We Teach',
@@ -327,9 +327,37 @@ return [
         'form_subtitle' => 'Admissions are open for all age groups — from LKG to adults, beginners to advanced learners. Share your details and we will guide you.',
     ],
 
+    // Registrations / trust marks
+    'msme' => [
+        'label' => 'MSME (Udyam) Registered · Government of India',
+        'footer_label' => 'Registered with',
+    ],
+
+    // Donations
+    'donate' => [
+        'nav' => 'Support Us',
+        'eyebrow' => 'Support Us',
+        'title' => 'Support Our Art School',
+        'text' => 'Your contribution helps us keep art education affordable — funding materials, exhibitions and classes for students who could not otherwise attend.',
+        'bank_title' => 'Bank Account Details',
+        'account_name' => 'Account Name',
+        'account_number' => 'Account Number',
+        'account_type' => 'Account Type',
+        'bank' => 'Bank',
+        'branch' => 'Branch',
+        'ifsc' => 'IFSC Code',
+        'upi_title' => 'Pay by UPI',
+        'upi_id' => 'UPI ID',
+        'upi_note' => 'Scan the QR code with any UPI app, or pay directly to the UPI ID above.',
+        'qr_alt' => 'UPI QR code for Shree Narayana Guru School of Art',
+        'copy' => 'Copy',
+        'copied' => 'Copied',
+        'thanks' => 'Heartfelt thanks for your valuable help and support. 🙏',
+    ],
+
     // Footer
     'footer' => [
-        'about' => 'A hobby art training institution in Mangalore, open to children, youth and adults alike — regardless of caste, religion, creed, language, gender or social background.',
+        'about' => 'A hobby art training institution in Mangaluru, open to children, youth and adults alike — regardless of caste, religion, creed, language, gender or social background.',
         'quick_links' => 'Quick Links',
         'contact' => 'Contact',
         'newsletter' => 'Stay Inspired',
