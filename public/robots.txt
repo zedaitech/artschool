@@ -1,3 +1,8 @@
 User-agent: *
-Disallow: /admin
 Allow: /
+
+# The admin panel and the health check have nothing to index.
+Disallow: /admin
+Disallow: /up
+
+Sitemap: https://shreenarayanaguruschoolofart.in/sitemap.xml

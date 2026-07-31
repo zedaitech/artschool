@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Models\Setting;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -35,7 +36,7 @@ class ManageSettings extends Page implements HasForms
         'contact_email', 'contact_phone', 'contact_whatsapp', 'contact_address', 'contact_hours', 'map_embed',
         'contact_person_name', 'contact_person_role',
         'social_facebook', 'social_instagram', 'social_youtube', 'social_whatsapp',
-        'meta_title', 'meta_description',
+        'meta_title', 'meta_description', 'og_image',
         'stat_students', 'stat_years', 'stat_centers', 'stat_awards',
     ];
 
@@ -79,10 +80,21 @@ class ManageSettings extends Page implements HasForms
                         TextInput::make('stat_centers')->numeric()->label('Training centres'),
                         TextInput::make('stat_awards')->numeric()->label('Awards'),
                     ]),
-                Section::make('SEO defaults')
+                Section::make('SEO & sharing')
                     ->schema([
-                        TextInput::make('meta_title'),
-                        Textarea::make('meta_description')->rows(2),
+                        TextInput::make('meta_title')
+                            ->label('Homepage title')
+                            ->helperText('Shown in Google results and the browser tab. Around 60 characters.'),
+                        Textarea::make('meta_description')
+                            ->rows(2)
+                            ->label('Homepage description')
+                            ->helperText('The grey text under the title in search results. Around 155 characters.'),
+                        FileUpload::make('og_image')
+                            ->label('Share image')
+                            ->image()
+                            ->directory('seo')
+                            ->imageEditor()
+                            ->helperText('Shown when the site is shared on WhatsApp, Facebook or X. Landscape, ideally 1200 x 630.'),
                     ]),
             ])
             ->statePath('data');

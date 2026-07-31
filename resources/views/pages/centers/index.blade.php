@@ -1,4 +1,13 @@
-<x-layouts.app :title="__('messages.nav.centers')" :description="__('messages.centers.text')">
+@php
+    $schema = [
+        \App\Support\StructuredData::centerList($centers),
+        \App\Support\StructuredData::breadcrumbs([
+            __('messages.nav.home') => route('home'),
+            __('messages.nav.centers') => route('centers.index'),
+        ]),
+    ];
+@endphp
+<x-layouts.app :title="__('messages.nav.centers')" :description="__('messages.centers.text')" :schema="$schema">
     <x-page-hero
         :title="__('messages.centers.title')"
         :subtitle="__('messages.centers.text')"

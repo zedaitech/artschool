@@ -1,4 +1,7 @@
-<x-layouts.app>
+@php
+    $schema = $featuredEvent ? [\App\Support\StructuredData::event($featuredEvent)] : [];
+@endphp
+<x-layouts.app :schema="$schema">
     {{-- ============ HERO SLIDER ============ --}}
     <section x-data="{
                 active: 0,

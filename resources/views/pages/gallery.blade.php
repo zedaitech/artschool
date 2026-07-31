@@ -1,4 +1,10 @@
-<x-layouts.app :title="__('messages.nav.gallery')">
+@php
+    $schema = [\App\Support\StructuredData::breadcrumbs([
+        __('messages.nav.home') => route('home'),
+        __('messages.nav.gallery') => route('gallery'),
+    ])];
+@endphp
+<x-layouts.app :title="__('messages.nav.gallery')" :description="__('messages.home.gallery_text')" :schema="$schema">
     <x-page-hero
         :title="__('messages.home.gallery_title')"
         :subtitle="__('messages.home.gallery_text')"

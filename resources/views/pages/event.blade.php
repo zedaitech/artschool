@@ -1,4 +1,14 @@
-<x-layouts.app :title="$event->title">
+@php
+    $schema = [
+        \App\Support\StructuredData::event($event),
+        \App\Support\StructuredData::breadcrumbs([
+            __('messages.nav.home') => route('home'),
+            __('messages.nav.events') => route('events.index'),
+            $event->title => route('events.show', $event->slug),
+        ]),
+    ];
+@endphp
+<x-layouts.app :title="$event->title" :description="$event->excerpt" :image="$event->image" og-type="article" :schema="$schema">
     <x-page-hero
         :title="$event->title"
         :subtitle="$event->excerpt"

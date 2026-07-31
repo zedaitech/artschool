@@ -1,4 +1,11 @@
-@props(['title' => null, 'description' => null])
+@props([
+    'title' => null,
+    'description' => null,
+    'image' => null,      // Share image for this page; falls back to the site default.
+    'ogType' => 'website',
+    'schema' => [],       // Extra JSON-LD nodes contributed by the page.
+    'noindex' => false,
+])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
       dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
@@ -8,23 +15,24 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @php
-        $metaTitle = trim(($title ?? '').' — '.__('messages.school_name'), ' —') ?: __('messages.school_name');
-        $metaDesc = $description ?? ($settings['meta_description'] ?? __('messages.footer.about'));
+        // The homepage takes the admin-set meta title verbatim; inner pages get
+        // "Page — School Name" so results read well without repeating the brand.
+        $metaTitle = $title
+            ? trim($title.' — '.__('messages.school_name'), ' —')
+            : ($settings['meta_title'] ?? __('messages.school_name'));
+        $metaDesc = \Illuminate\Support\Str::limit(
+            strip_tags($description ?? ($settings['meta_description'] ?? __('messages.footer.about'))),
+            160,
+        );
+        // Share previews want a wide image, so the square logo is a poor default;
+        // the school banner is the fallback unless an admin sets one in Settings.
+        $metaImage = url(media_url(
+            $image ?? ($settings['og_image'] ?? null),
+            asset('images/hero/banner-creativity-blossoms.jpg'),
+        ));
     @endphp
-    <title>{{ $metaTitle }}</title>
-    <meta name="description" content="{{ $metaDesc }}">
 
-    {{-- Open Graph --}}
-    <meta property="og:title" content="{{ $metaTitle }}">
-    <meta property="og:description" content="{{ $metaDesc }}">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="{{ asset('images/logo.png') }}">
-
-    {{-- hreflang alternates for SEO --}}
-    @foreach(LaravelLocalization::getSupportedLocales() as $code => $props)
-        <link rel="alternate" hreflang="{{ $code }}"
-              href="{{ LaravelLocalization::getLocalizedURL($code, null, [], true) }}">
-    @endforeach
+    @include('partials.seo')
 
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">

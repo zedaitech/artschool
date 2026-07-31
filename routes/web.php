@@ -4,9 +4,20 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TrainingCenterController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+/*
+|--------------------------------------------------------------------------
+| Sitemap
+|--------------------------------------------------------------------------
+| Deliberately outside the localized group: search engines expect one
+| sitemap at the domain root, listing every locale with its alternates.
+*/
+
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 
 /*
 |--------------------------------------------------------------------------

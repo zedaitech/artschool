@@ -31,6 +31,8 @@ class SettingSeeder extends Seeder
             ['seo', 'meta_title', 'Shree Narayana Guru School of Art'],
             ['seo', 'meta_description', 'A hobby art training institution in Mangalore, open to children, youth and adults regardless of caste, religion, creed, language, gender or social background. Drawing and painting classes, creative skill development, competitions and exhibitions — enquire on WhatsApp.'],
 
+            ['seo', 'og_image', null],
+
             // Stats (shown on the homepage counters)
             ['stats', 'stat_students', '1200'],
             ['stats', 'stat_years', '7'],
