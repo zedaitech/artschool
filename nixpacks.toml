@@ -17,7 +17,8 @@ cmds = [
 
 # Runs on container start (after Railway has injected env vars).
 # Caches are built here (not at build time) so APP_KEY / env are present.
+# route:cache is deliberately absent: it breaks the localized/translated routes.
 # migrate --force is harmless with the committed seeded SQLite file and keeps
 # the schema current if you later point DB_DATABASE at a fresh volume.
 [start]
-cmd = "php artisan storage:link || true; php artisan migrate --force --no-interaction; php artisan config:cache; php artisan route:cache; php artisan view:cache; php artisan serve --host 0.0.0.0 --port ${PORT:-8080}"
+cmd = "php artisan storage:link || true; php artisan migrate --force --no-interaction; php artisan config:cache; php artisan view:cache; php artisan serve --host 0.0.0.0 --port ${PORT:-8080}"

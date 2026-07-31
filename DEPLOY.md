@@ -133,8 +133,20 @@ and the admin user move across. Delete the uploaded `.sqlite` file afterwards.
 
 ## 5. Check it
 ```bash
-php artisan config:cache && php artisan route:cache && php artisan view:cache
+php artisan config:cache && php artisan view:cache
 ```
+
+> **Never run `php artisan route:cache` on this project.** Every public URL is
+> registered inside `LaravelLocalization::setLocale()` with translated segments
+> (`__('routes.centers')`). The standard route cache freezes those at the locale
+> that happened to be active on the command line, and every localized URL then
+> returns 404 — `/up` keeps working, which makes it look like a routing bug.
+> If it has already been run: `php artisan route:clear`.
+>
+> To cache routes anyway, use the package's own command, `route:trans:cache`,
+> which needs the `loadCachedRoutesUsing()` hook described in the
+> mcamara/laravel-localization README. Routing is not a bottleneck here — the
+> simplest correct choice is to skip it.
 Then open the site in both languages, and log into `/admin` — the training
 centres, hero slides, events, gallery and Site Settings should all be there.
 
@@ -152,3 +164,17 @@ centres, hero slides, events, gallery and Site Settings should all be there.
 - Make `storage/` and `bootstrap/cache/` writable.
 - Configure real SMTP credentials and set `MAIL_FROM_ADDRESS` to a mailbox on
   your own domain, otherwise enquiry notifications fail silently.
+
+## Document root: point it at `/public`
+
+The domain's document root must be the `public` folder, not the project root.
+On Hostinger: hPanel -> Websites -> Dashboard -> Advanced -> "Change website's
+root directory" (or set the domain to `.../artschool/public`).
+
+Forwarding from the project root with an `.htaccess` such as
+`RewriteRule ^(.*)$ public/$1 [L]` mostly works, but Laravel then sees
+`SCRIPT_NAME=/public/index.php` and generates URLs like
+`/public/index.php/en`. It also leaves `.env`, `database/` and `storage/`
+one mod_rewrite failure away from being downloadable. Once the document root
+points at `public/`, delete that root `.htaccess` — `public/.htaccess`
+(committed) is the only rewrite file the app needs.
