@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    [x-cloak] {
+        display: none !important;
+    }
+
+    :root {
+        --brand-maroon: #7a1f22;
+        --brand-gold: #d4a017;
+        --brand-green: #2f6b3a;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-brand-cream text-brand-ink font-sans antialiased;
+        background-image:
+            radial-gradient(circle at 15% 10%, rgba(212, 160, 23, 0.06), transparent 40%),
+            radial-gradient(circle at 85% 90%, rgba(122, 31, 34, 0.05), transparent 40%);
+    }
+
+    /*
+        Kannada typography.
+
+        The Latin display faces (Marcellus, Cormorant Garamond) carry no Kannada
+        glyphs, so every Kannada heading used to fall back to whatever the OS
+        shipped — Nirmala UI on Windows, something else everywhere else. These
+        rules give the script an intentional pair and undo the Latin-specific
+        micro-typography that actively harms it:
+
+          - tracking: letter-spacing breaks the connection between a consonant
+            and its vowel sign, so Kannada is always set at normal tracking.
+          - leading: the script stacks vowel signs above and ottu (subscript
+            consonants) below, so it needs more room per line than Latin.
+          - uppercase: Kannada is unicameral — text-transform does nothing but
+            leave the tracking damage behind.
+    */
+    html[lang="kn"] body {
+        @apply font-kannada;
+    }
+
+    /* Covers h1–h4 plus every inline `font-display` and `.section-title`. */
+    html[lang="kn"] .font-display,
+    html[lang="kn"] h1,
+    html[lang="kn"] h2,
+    html[lang="kn"] h3,
+    html[lang="kn"] h4 {
+        @apply font-kannada-display tracking-normal;
+        line-height: 1.35;
+    }
+
+    html[lang="kn"] .eyebrow {
+        @apply normal-case;
+        letter-spacing: 0.06em;
+    }
+
+    /* Ottu hang below the baseline; give running text room to breathe. */
+    html[lang="kn"] p,
+    html[lang="kn"] li {
+        line-height: 1.8;
+    }
+
+    h1, h2, h3, h4 {
+        @apply font-display tracking-tight;
+        text-wrap: balance;
+    }
+}
+
+@layer components {
+    .container-x {
+        @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+    }
+
+    .eyebrow {
+        @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-brand-maroon;
+    }
+
+    .eyebrow::before {
+        content: '';
+        @apply h-px w-8 bg-brand-gold;
+    }
+
+    .section-title {
+        @apply font-display text-3xl leading-tight text-brand-ink sm:text-4xl lg:text-5xl;
+    }
+
+    /* Buttons */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2;
+    }
+
+    .btn-primary {
+        @apply btn bg-maroon-gradient text-white shadow-soft hover:-translate-y-0.5 hover:shadow-gold;
+    }
+
+    .btn-gold {
+        @apply btn bg-gold-gradient text-brand-maroon-dark shadow-gold hover:-translate-y-0.5;
+    }
+
+    .btn-outline {
+        @apply btn border border-brand-maroon/25 bg-white/50 text-brand-maroon backdrop-blur hover:border-brand-maroon hover:bg-white;
+    }
+
+    .btn-ghost-light {
+        @apply btn border border-white/40 text-white hover:bg-white/10;
+    }
+
+    /* Cards */
+    /* Pair `.card` with the literal `group` class in markup for group-hover. */
+    .card {
+        @apply relative overflow-hidden rounded-3xl bg-white shadow-[0_10px_40px_-24px_rgba(43,35,32,0.35)] ring-1 ring-black/[0.04] transition-all duration-500 hover:-translate-y-1 hover:shadow-soft;
+    }
+
+    .chip {
+        @apply inline-flex items-center gap-1.5 rounded-full bg-brand-gold-soft px-3 py-1 text-xs font-semibold text-brand-maroon ring-1 ring-brand-gold/30;
+    }
+
+    /* Decorative divider (lotus-inspired dot) */
+    .divider-dot {
+        @apply relative flex items-center justify-center gap-3 text-brand-gold;
+    }
+
+    .divider-dot::before,
+    .divider-dot::after {
+        content: '';
+        @apply h-px w-16 bg-gradient-to-r from-transparent to-brand-gold/50;
+    }
+
+    .divider-dot::after {
+        @apply bg-gradient-to-l;
+    }
+
+    /* Prose overrides for CMS body content */
+    .prose-heritage {
+        @apply prose prose-lg max-w-none prose-headings:font-display prose-headings:text-brand-ink prose-p:text-brand-ink/80 prose-a:text-brand-maroon prose-strong:text-brand-ink prose-li:text-brand-ink/80 prose-img:rounded-2xl;
+    }
+
+    /* Reveal-on-scroll */
+    [data-reveal] {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+    }
+
+    [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@layer utilities {
+    .text-shadow-hero {
+        text-shadow: 0 2px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .bg-grid {
+        background-image: linear-gradient(rgba(122, 31, 34, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(122, 31, 34, 0.04) 1px, transparent 1px);
+        background-size: 44px 44px;
+    }
+}
