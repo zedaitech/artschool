@@ -22,7 +22,7 @@
 
         {{-- Breadcrumb --}}
         <nav class="mt-6 flex items-center gap-2 text-sm text-white/60">
-            <a href="{{ route('home') }}" class="hover:text-brand-gold-light">{{ __('messages.nav.home') }}</a>
+            <a href="{{ route('home') }}" class="inline-flex min-h-[24px] items-center hover:text-brand-gold-light">{{ __('messages.nav.home') }}</a>
             <span>/</span>
             <span class="text-white/90">{{ $title }}</span>
         </nav>

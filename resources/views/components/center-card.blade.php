@@ -60,7 +60,7 @@
         <div class="mt-5 flex items-center justify-between border-t border-brand-ink/10 pt-4 text-xs text-brand-ink/60">
             @if($center->map_url)
                 <a href="{{ $center->map_url }}" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1.5 font-semibold text-brand-ink/70 transition hover:text-brand-maroon">
+                   class="inline-flex min-h-[28px] items-center gap-1.5 font-semibold text-brand-ink/70 transition hover:text-brand-maroon">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-6 2V6l6-2m0 16l6 2m-6-2V4m6 18l6-2V4l-6 2m0 14V6"/></svg>
                     {{ __('messages.centers.directions') }}
                 </a>
@@ -69,7 +69,7 @@
             @endif
 
             <a href="{{ route('contact') }}?centre={{ urlencode($center->name) }}"
-               class="inline-flex items-center gap-1 font-semibold text-brand-maroon transition group-hover:gap-2">
+               class="inline-flex min-h-[28px] items-center gap-1 font-semibold text-brand-maroon transition group-hover:gap-2">
                 {{ __('messages.enquire_now') }}
                 <svg class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>

@@ -32,7 +32,7 @@
         @endif
 
         <a href="{{ route('events.show', $event->slug) }}"
-           class="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold text-brand-maroon transition hover:gap-3">
+           class="mt-6 inline-flex min-h-[28px] items-center gap-2 self-start text-sm font-semibold text-brand-maroon transition hover:gap-3">
             {{ __('messages.events.view_details') }}
             <svg class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
