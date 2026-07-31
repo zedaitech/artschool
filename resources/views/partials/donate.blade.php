@@ -57,7 +57,7 @@
 
                 {{-- Registration mark — reassurance for anyone about to transfer money. --}}
                 <div class="mt-6 flex items-center gap-3 border-t border-brand-ink/8 pt-5">
-                    <img src="{{ asset('images/msme-registered.jpg') }}" alt="{{ __('messages.msme.label') }}" loading="lazy"
+                    <img src="{{ asset_v('images/msme-registered.jpg') }}" alt="{{ __('messages.msme.label') }}" loading="lazy"
                          class="h-12 w-auto shrink-0">
                     <p class="text-xs font-medium leading-relaxed text-brand-ink/55">{{ __('messages.msme.label') }}</p>
                 </div>
@@ -68,7 +68,7 @@
                 <h3 class="font-display text-2xl">{{ __('messages.donate.upi_title') }}</h3>
                 <p class="mt-2 text-sm leading-relaxed text-white/70">{{ __('messages.donate.upi_note') }}</p>
 
-                <img src="{{ asset($donation['qr']) }}" alt="{{ __('messages.donate.qr_alt') }}" loading="lazy"
+                <img src="{{ asset_v($donation['qr']) }}" alt="{{ __('messages.donate.qr_alt') }}" loading="lazy"
                      class="mx-auto mt-6 w-full max-w-[280px] rounded-2xl bg-white/95 p-2 shadow-lg">
 
                 <div class="mt-6 rounded-2xl bg-white/10 p-4">

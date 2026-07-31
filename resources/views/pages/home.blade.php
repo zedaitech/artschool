@@ -361,7 +361,7 @@
                 {{-- Portrait + personal details --}}
                 <div data-reveal class="relative min-w-0 lg:col-span-5">
                     <div class="relative overflow-hidden rounded-[2rem] shadow-soft">
-                        <img src="{{ asset('images/founder-portrait.jpg') }}"
+                        <img src="{{ asset_v('images/founder-portrait.jpg') }}"
                              alt="{{ __('messages.founder.name') }}" loading="lazy"
                              class="aspect-[4/5] w-full object-cover object-top">
                         <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-maroon-dark/90 to-transparent p-6 pt-16 text-white">

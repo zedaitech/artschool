@@ -31,7 +31,7 @@
                      its own light chip rather than sitting on the maroon. --}}
                 <div class="mt-7">
                     <p class="text-xs font-semibold uppercase tracking-wide text-white/45">{{ __('messages.msme.footer_label') }}</p>
-                    <img src="{{ asset('images/msme-registered.jpg') }}" alt="{{ __('messages.msme.label') }}" loading="lazy"
+                    <img src="{{ asset_v('images/msme-registered.jpg') }}" alt="{{ __('messages.msme.label') }}" loading="lazy"
                          class="mt-2 h-14 w-auto rounded-lg bg-white p-1.5">
                 </div>
             </div>

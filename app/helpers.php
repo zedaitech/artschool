@@ -24,6 +24,22 @@ if (! function_exists('media_url')) {
     }
 }
 
+if (! function_exists('asset_v')) {
+    /**
+     * asset() with a cache-busting stamp taken from the file's modification
+     * time. Static images ship with a week-long max-age, so replacing one in
+     * place would otherwise keep serving the old picture from browser and CDN
+     * caches until the TTL expired. The stamp only changes when the file does.
+     */
+    function asset_v(string $path): string
+    {
+        $file = public_path($path);
+        $stamp = is_file($file) ? filemtime($file) : null;
+
+        return asset($path).($stamp ? '?v='.$stamp : '');
+    }
+}
+
 if (! function_exists('whatsapp_number')) {
     /**
      * The school's WhatsApp number in wa.me form: digits only, country code
