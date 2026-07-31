@@ -22,7 +22,7 @@ class SettingSeeder extends Seeder
             ['contact', 'map_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.856!3d12.914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzUwLjQiTiA3NMKwNTEnMjEuNiJF!5e0!3m2!1sen!2sin!4v1600000000000'],
 
             // Social
-            ['social', 'social_facebook', 'https://facebook.com/'],
+            ['social', 'social_facebook', 'https://www.facebook.com/shreenarayanaguruschoolofart'],
             ['social', 'social_instagram', 'https://instagram.com/'],
             ['social', 'social_youtube', 'https://youtube.com/'],
             ['social', 'social_whatsapp', 'https://wa.me/919483024279'],

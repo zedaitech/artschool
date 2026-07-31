@@ -85,11 +85,14 @@
 
         {{-- Dots --}}
         @if($slides->count() > 1)
-            <div class="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3">
+            <div class="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1">
                 @foreach($slides as $i => $slide)
+                    {{-- The dot stays 8px; the button around it is a 44px touch target. --}}
                     <button @click="go({{ $i }})" aria-label="Slide {{ $i + 1 }}"
-                            class="h-2 rounded-full transition-all duration-300"
-                            :class="active === {{ $i }} ? 'w-8 bg-brand-gold' : 'w-2 bg-white/40 hover:bg-white/70'"></button>
+                            class="grid h-11 w-8 place-items-center">
+                        <span class="h-2 rounded-full transition-all duration-300"
+                              :class="active === {{ $i }} ? 'w-8 bg-brand-gold' : 'w-2 bg-white/40 hover:bg-white/70'"></span>
+                    </button>
                 @endforeach
             </div>
         @endif
@@ -103,7 +106,7 @@
     {{-- ============ STATS ============ --}}
     <section class="relative z-10 -mt-16">
         <div class="container-x">
-            <div data-reveal class="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-brand-ink/5 shadow-soft ring-1 ring-black/5 lg:grid-cols-4">
+            <div data-reveal class="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-brand-gold/25 shadow-gold ring-1 ring-brand-gold/40 lg:grid-cols-4">
                 @php
                     $stats = [
                         ['value' => $settings['stat_students'] ?? 1200, 'label' => __('messages.stats.students')],
@@ -113,9 +116,9 @@
                     ];
                 @endphp
                 @foreach($stats as $stat)
-                    <div class="bg-white px-6 py-8 text-center">
+                    <div class="bg-gradient-to-b from-white to-brand-gold-pale/60 px-6 py-8 text-center">
                         <div class="font-display text-4xl text-brand-maroon lg:text-5xl">
-                            <span data-count="{{ (int) $stat['value'] }}">0</span><span class="text-brand-gold">+</span>
+                            <span data-count="{{ (int) $stat['value'] }}">0</span><span class="text-brand-gold-amber">+</span>
                         </div>
                         <p class="mt-2 text-sm font-medium text-brand-ink/60">{{ $stat['label'] }}</p>
                     </div>
@@ -144,7 +147,7 @@
 
                     <div class="relative min-w-0 flex-1">
                         <div class="flex flex-wrap items-center gap-2.5">
-                            <span class="rounded-full bg-brand-gold px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand-maroon-dark shadow-sm">
+                            <span class="rounded-full bg-brand-gold px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-maroon-dark shadow-sm">
                                 {{ __('messages.events.entries_open') }}
                             </span>
                             <span class="eyebrow !text-brand-gold-light">{{ __('messages.events.eyebrow') }}</span>
@@ -244,7 +247,7 @@
     </section>
 
     {{-- ============ WHAT WE OFFER ============ --}}
-    <section class="py-24">
+    <section class="section-tint py-24">
         <div class="container-x">
             <x-section-heading center
                 :eyebrow="__('messages.offer.eyebrow')"
@@ -288,7 +291,7 @@
     </section>
 
     {{-- ============ WHY CHOOSE US ============ --}}
-    <section class="py-24">
+    <section class="section-tint py-24">
         <div class="container-x">
             <x-section-heading center
                 :eyebrow="__('messages.why.eyebrow')"
@@ -356,7 +359,7 @@
 
             <div class="mt-14 grid items-start gap-12 lg:grid-cols-12">
                 {{-- Portrait + personal details --}}
-                <div data-reveal class="relative lg:col-span-5">
+                <div data-reveal class="relative min-w-0 lg:col-span-5">
                     <div class="relative overflow-hidden rounded-[2rem] shadow-soft">
                         <img src="{{ asset('images/founder-portrait.jpg') }}"
                              alt="{{ __('messages.founder.name') }}" loading="lazy"
@@ -382,7 +385,7 @@
                 </div>
 
                 {{-- Summary, education, experience, awards --}}
-                <div class="lg:col-span-7">
+                <div class="min-w-0 lg:col-span-7">
                     <p class="text-lg leading-relaxed text-brand-ink/70">{{ __('messages.founder.summary') }}</p>
 
                     <div class="mt-9 grid gap-6 sm:grid-cols-2">

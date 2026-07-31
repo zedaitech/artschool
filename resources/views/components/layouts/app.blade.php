@@ -81,7 +81,7 @@
             x-init="window.addEventListener('scroll', () => show = window.scrollY > 600)"
             x-show="show" x-transition
             @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
-            class="fixed bottom-6 {{ LaravelLocalization::getCurrentLocaleDirection() === 'rtl' ? 'left-6' : 'right-6' }} z-40 grid h-12 w-12 place-items-center rounded-full bg-brand-maroon text-white shadow-soft transition hover:bg-brand-maroon-dark"
+            class="fixed bottom-6 {{ LaravelLocalization::getCurrentLocaleDirection() === 'rtl' ? 'left-6' : 'right-6' }} z-40 grid h-12 w-12 place-items-center rounded-full bg-gold-gradient text-brand-maroon-dark shadow-gold transition hover:brightness-105"
             aria-label="Scroll to top">
         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>

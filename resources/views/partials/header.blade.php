@@ -16,8 +16,10 @@
     even in the moment before Alpine hydrates.
 --}}
 <header x-data="{ scrolled: false, open: false }"
+        @keydown.escape.window="open = false"
+        @click.outside="open = false"
         x-init="scrolled = window.scrollY > 24; window.addEventListener('scroll', () => scrolled = window.scrollY > 24)"
-        :class="scrolled ? 'is-scrolled bg-brand-cream/95 shadow-[0_4px_30px_-12px_rgba(43,35,32,0.25)] backdrop-blur' : 'bg-transparent'"
+        :class="(scrolled || open) ? 'is-scrolled border-b border-brand-gold/40 bg-brand-cream/95 shadow-[0_4px_30px_-12px_rgba(233,162,12,0.35)] backdrop-blur' : 'bg-transparent'"
         class="group fixed inset-x-0 top-0 z-50 transition-all duration-300">
     {{-- Top strip --}}
     <div class="hidden border-b border-brand-maroon/10 bg-brand-maroon text-white/90 lg:block">
@@ -51,14 +53,14 @@
 
     {{-- flex-nowrap + min-w-0 keep the bar on one line: the brand text truncates
          rather than wrapping the whole row onto a second line. --}}
-    <nav class="container-x flex flex-nowrap items-center justify-between gap-4 py-3">
+    <nav class="container-x flex flex-nowrap items-center justify-between gap-2 py-3 sm:gap-4">
         {{-- Brand --}}
         <a href="{{ route('home') }}" class="flex min-w-0 items-center gap-3">
             <img src="{{ asset('images/logo.png') }}" alt="{{ __('messages.school_name') }}"
-                 class="h-14 w-14 shrink-0 rounded-full object-contain drop-shadow-sm sm:h-16 sm:w-16">
+                 class="h-11 w-11 shrink-0 rounded-full object-contain drop-shadow-sm sm:h-16 sm:w-16">
             <span class="hidden min-w-0 leading-tight sm:block">
                 <span class="block truncate font-display text-base text-white text-shadow-hero transition-colors group-[.is-scrolled]:text-brand-maroon group-[.is-scrolled]:[text-shadow:none] lg:text-lg">{{ __('messages.school_name') }}</span>
-                <span class="hidden truncate text-[11px] font-medium uppercase tracking-[0.14em] text-brand-gold-light transition-colors group-[.is-scrolled]:text-brand-gold xl:block">{{ __('messages.tagline') }}</span>
+                <span class="hidden truncate text-xs font-medium uppercase tracking-[0.14em] text-brand-gold-light transition-colors group-[.is-scrolled]:text-brand-gold xl:block">{{ __('messages.tagline') }}</span>
             </span>
         </a>
 
@@ -76,14 +78,16 @@
             @endforeach
         </div>
 
-        <div class="flex shrink-0 items-center gap-2">
+        <div class="flex shrink-0 items-center gap-1.5 sm:gap-2">
             @include('partials.language-switcher')
             <a href="{{ route('contact') }}" class="hidden btn-primary whitespace-nowrap !px-5 !py-2.5 text-xs ring-1 ring-white/30 group-[.is-scrolled]:ring-0 sm:inline-flex">
                 {{ __('messages.enquire_now') }}
             </a>
 
             {{-- Mobile toggle --}}
-            <button @click="open = !open" class="grid h-11 w-11 place-items-center rounded-full text-white transition-colors group-[.is-scrolled]:text-brand-maroon xl:hidden" aria-label="Menu">
+            <button @click="open = !open" :aria-expanded="open"
+                    class="grid h-11 w-11 place-items-center rounded-full bg-brand-maroon/85 text-white ring-1 ring-white/25 transition-colors group-[.is-scrolled]:bg-transparent group-[.is-scrolled]:text-brand-maroon group-[.is-scrolled]:ring-0 xl:hidden"
+                    aria-label="Menu">
                 <svg x-show="!open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
                 <svg x-show="open" x-cloak class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
             </button>
@@ -92,11 +96,15 @@
 
     {{-- Mobile menu --}}
     <div x-show="open" x-cloak x-transition
-         class="border-t border-brand-maroon/10 bg-brand-cream/98 backdrop-blur xl:hidden">
+         class="max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-brand-maroon/15 bg-brand-cream shadow-[0_18px_40px_-18px_rgba(43,35,32,0.45)] xl:hidden">
         <div class="container-x space-y-1 py-4">
             @foreach($nav as $item)
+                @php $mobileActive = request()->routeIs($item['route']) || request()->routeIs(\Illuminate\Support\Str::before($item['route'], '.').'.*'); @endphp
                 <a href="{{ route($item['route']) }}"
-                   class="block rounded-xl px-4 py-3 text-base font-semibold text-brand-ink/80 hover:bg-white hover:text-brand-maroon">
+                   @if($mobileActive) aria-current="page" @endif
+                   class="flex min-h-[48px] items-center rounded-xl px-4 py-3 text-base font-semibold transition {{ $mobileActive
+                       ? 'bg-brand-maroon text-white'
+                       : 'text-brand-ink/80 hover:bg-white hover:text-brand-maroon' }}">
                     {{ $item['label'] }}
                 </a>
             @endforeach

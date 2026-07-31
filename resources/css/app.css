@@ -9,7 +9,7 @@
 
     :root {
         --brand-maroon: #7a1f22;
-        --brand-gold: #d4a017;
+        --brand-gold: #faab01;
         --brand-green: #2f6b3a;
     }
 
@@ -20,8 +20,10 @@
     body {
         @apply bg-brand-cream text-brand-ink font-sans antialiased;
         background-image:
-            radial-gradient(circle at 15% 10%, rgba(212, 160, 23, 0.06), transparent 40%),
-            radial-gradient(circle at 85% 90%, rgba(122, 31, 34, 0.05), transparent 40%);
+            radial-gradient(circle at 12% 8%, rgba(250, 171, 1, 0.16), transparent 42%),
+            radial-gradient(circle at 88% 28%, rgba(252, 215, 135, 0.22), transparent 38%),
+            radial-gradient(circle at 50% 96%, rgba(240, 129, 0, 0.10), transparent 45%),
+            radial-gradient(circle at 85% 70%, rgba(122, 31, 34, 0.05), transparent 40%);
     }
 
     /*
@@ -76,13 +78,15 @@
         @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
     }
 
+    /* Every section label on the site is an eyebrow, so carrying the crest's
+       amber here is what puts gold on each page rather than only on buttons. */
     .eyebrow {
-        @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-brand-maroon;
+        @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold-deep;
     }
 
     .eyebrow::before {
         content: '';
-        @apply h-px w-8 bg-brand-gold;
+        @apply h-px w-8 bg-gold-gradient;
     }
 
     .section-title {
@@ -103,7 +107,7 @@
     }
 
     .btn-outline {
-        @apply btn border border-brand-maroon/25 bg-white/50 text-brand-maroon backdrop-blur hover:border-brand-maroon hover:bg-white;
+        @apply btn border border-brand-gold/50 bg-white/50 text-brand-maroon backdrop-blur hover:border-brand-gold hover:bg-brand-gold-pale;
     }
 
     .btn-ghost-light {
@@ -113,11 +117,26 @@
     /* Cards */
     /* Pair `.card` with the literal `group` class in markup for group-hover. */
     .card {
-        @apply relative overflow-hidden rounded-3xl bg-white shadow-[0_10px_40px_-24px_rgba(43,35,32,0.35)] ring-1 ring-black/[0.04] transition-all duration-500 hover:-translate-y-1 hover:shadow-soft;
+        @apply relative overflow-hidden rounded-3xl bg-white shadow-[0_10px_40px_-24px_rgba(43,35,32,0.35)] ring-1 ring-brand-gold/15 transition-all duration-500 hover:-translate-y-1 hover:shadow-gold hover:ring-brand-gold/45;
     }
 
+    /* Warm tint band. Alternating sections between this and plain white keeps
+       the crest's gold present down the whole page, not just in accents. */
+    .section-tint {
+        @apply relative bg-gold-wash;
+    }
+
+    .section-tint::before,
+    .section-tint::after {
+        content: '';
+        @apply absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-gold/45 to-transparent;
+    }
+
+    .section-tint::before { top: 0; }
+    .section-tint::after { bottom: 0; }
+
     .chip {
-        @apply inline-flex items-center gap-1.5 rounded-full bg-brand-gold-soft px-3 py-1 text-xs font-semibold text-brand-maroon ring-1 ring-brand-gold/30;
+        @apply inline-flex items-center gap-1.5 rounded-full bg-brand-gold-pale px-3 py-1 text-xs font-semibold text-brand-gold-deep ring-1 ring-brand-gold/40;
     }
 
     /* Decorative divider (lotus-inspired dot) */
@@ -140,6 +159,18 @@
         @apply prose prose-lg max-w-none prose-headings:font-display prose-headings:text-brand-ink prose-p:text-brand-ink/80 prose-a:text-brand-maroon prose-strong:text-brand-ink prose-li:text-brand-ink/80 prose-img:rounded-2xl;
     }
 
+    /* Admin-written content can contain a table wider than a phone screen — the
+       competition categories are one. Let it scroll inside its own box instead
+       of stretching the page and giving the whole site a horizontal scrollbar. */
+    .prose-heritage table {
+        @apply block w-full overflow-x-auto;
+    }
+
+    /* Long words (URLs, email addresses) must not push the layout open either. */
+    .prose-heritage {
+        overflow-wrap: break-word;
+    }
+
     /* Reveal-on-scroll */
     [data-reveal] {
         opacity: 0;
@@ -159,9 +190,11 @@
         text-shadow: 0 2px 30px rgba(0, 0, 0, 0.45);
     }
 
+    /* Sits over the maroon hero and CTA band — gold lines read as warm texture
+       where maroon-on-maroon read as noise. */
     .bg-grid {
-        background-image: linear-gradient(rgba(122, 31, 34, 0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(122, 31, 34, 0.04) 1px, transparent 1px);
+        background-image: linear-gradient(rgba(250, 171, 1, 0.10) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(250, 171, 1, 0.10) 1px, transparent 1px);
         background-size: 44px 44px;
     }
 }

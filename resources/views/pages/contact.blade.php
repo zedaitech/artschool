@@ -14,7 +14,7 @@
     <section class="py-20">
         <div class="container-x grid gap-12 lg:grid-cols-12">
             {{-- Info --}}
-            <div class="lg:col-span-5">
+            <div class="min-w-0 lg:col-span-5">
                 <x-section-heading :eyebrow="__('messages.nav.contact')" :title="__('messages.contact.title')" :text="__('messages.contact.subtitle')" />
 
                 <div class="mt-10 space-y-5">
@@ -88,7 +88,7 @@
             </div>
 
             {{-- Form --}}
-            <div class="lg:col-span-6 lg:col-start-7">
+            <div class="min-w-0 lg:col-span-6 lg:col-start-7">
                 <div data-reveal class="rounded-3xl border border-brand-ink/8 bg-white p-8 shadow-soft">
                     <h2 class="font-display text-2xl text-brand-ink">{{ __('messages.contact.form_title') }}</h2>
                     <div class="mt-6">

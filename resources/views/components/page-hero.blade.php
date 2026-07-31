@@ -5,7 +5,11 @@
         <img src="{{ media_url($image) }}" alt="" class="absolute inset-0 h-full w-full object-cover opacity-45">
     @endif
     <div class="absolute inset-0 bg-gradient-to-t from-brand-maroon-dark via-brand-maroon-dark/70 to-brand-maroon-dark/30"></div>
+    {{-- Warm glow from the crest, so inner-page heroes are not flat maroon. --}}
+    <div class="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-brand-gold/20 blur-3xl"></div>
     <div class="absolute inset-0 bg-grid opacity-10"></div>
+    {{-- Gold edge hands off to the cream page below. --}}
+    <div class="absolute inset-x-0 bottom-0 h-1 bg-gold-gradient"></div>
 
     <div class="container-x relative">
         @if($eyebrow)

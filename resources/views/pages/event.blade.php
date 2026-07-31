@@ -18,7 +18,7 @@
     <section class="py-20">
         <div class="container-x grid gap-12 lg:grid-cols-12">
             {{-- Details --}}
-            <div class="lg:col-span-7">
+            <div class="min-w-0 lg:col-span-7">
                 <x-section-heading :title="__('messages.events.details')" />
 
                 @if($event->body)
@@ -34,7 +34,7 @@
             </div>
 
             {{-- Poster + key facts --}}
-            <aside class="lg:col-span-5">
+            <aside class="min-w-0 lg:col-span-5">
                 @if($event->image)
                     <figure x-data="{ zoom: false }">
                         <img src="{{ media_url($event->image) }}" alt="{{ $event->title }}"

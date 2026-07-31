@@ -45,15 +45,8 @@
         @endif
 
         {{-- Schedule --}}
+        {{-- The day already appears on the chip above, so only the time repeats here. --}}
         <dl class="mt-5 flex-1 space-y-2 text-sm">
-            @if($center->day_label)
-                <div class="flex items-center gap-2 text-brand-ink/70">
-                    <svg class="h-4 w-4 shrink-0 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                        <rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 3v4M16 3v4"/>
-                    </svg>
-                    <dd>{{ $center->schedule_label }}</dd>
-                </div>
-            @endif
             @if($center->time_label)
                 <div class="flex items-center gap-2 font-semibold text-brand-maroon">
                     <svg class="h-4 w-4 shrink-0 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
