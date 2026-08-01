@@ -543,5 +543,6 @@ return [
         'subscribe' => 'Subscribe',
         'rights' => 'All rights reserved.',
         'made_with' => 'Creating Artists, Building Character, Inspiring Humanity.',
+        'crafted_by' => 'Crafted by',
     ],
 ];

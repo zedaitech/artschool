@@ -96,6 +96,13 @@
             <p class="flex items-center gap-1.5">
                 <span class="text-brand-gold">&#10022;</span> {{ __('messages.footer.made_with') }}
             </p>
+            <p>
+                {{ __('messages.footer.crafted_by') }}
+                <a href="https://www.zedai.tech" target="_blank" rel="noopener"
+                   class="inline-flex min-h-[24px] items-center font-semibold tracking-wide text-white/70 transition hover:text-brand-gold-light">
+                    ZED LABS
+                </a>
+            </p>
         </div>
     </div>
 </footer>
