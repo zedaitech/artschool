@@ -105,10 +105,6 @@
                class="group inline-flex min-h-[44px] items-center gap-3 rounded-full bg-white/5 px-6 py-2.5 ring-1 ring-white/15 transition hover:bg-white/10 hover:ring-brand-gold/60">
                 <span class="text-xs text-white/50 transition group-hover:text-white/70">{{ __('messages.footer.crafted_by') }}</span>
                 <span class="text-sm font-bold tracking-[0.18em] text-brand-gold-light transition group-hover:text-white">ZED LABS</span>
-                <svg class="h-3.5 w-3.5 shrink-0 text-brand-gold/70 transition group-hover:translate-x-0.5 group-hover:text-brand-gold-light rtl:rotate-180"
-                     fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/>
-                </svg>
             </a>
         </div>
     </div>
