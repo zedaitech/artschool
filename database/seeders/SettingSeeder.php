@@ -26,6 +26,7 @@ class SettingSeeder extends Seeder
             ['social', 'social_instagram', 'https://instagram.com/'],
             ['social', 'social_youtube', 'https://youtube.com/'],
             ['social', 'social_whatsapp', 'https://wa.me/919483024279'],
+            ['social', 'blog_url', 'https://sngsoam.blogspot.com/'],
 
             // SEO defaults
             ['seo', 'meta_title', 'Shree Narayana Guru School of Art'],

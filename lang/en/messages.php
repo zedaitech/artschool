@@ -9,6 +9,7 @@ return [
         'gallery' => 'Gallery',
         'events' => 'Events',
         'contact' => 'Contact',
+        'blog' => 'Blog',
     ],
 
     // Global

@@ -8,6 +8,10 @@
         ['route' => 'contact', 'label' => __('messages.nav.contact')],
         ['url' => route('contact').'#donate', 'label' => __('messages.donate.nav')],
     ];
+
+    if ($footerBlog = $settings['blog_url'] ?? null) {
+        $footerNav[] = ['url' => $footerBlog, 'label' => __('messages.nav.blog'), 'external' => true];
+    }
 @endphp
 <footer class="relative mt-24 overflow-hidden bg-maroon-gradient text-white/80">
     <div class="absolute inset-0 bg-grid opacity-[0.15]"></div>
@@ -43,7 +47,9 @@
                 <ul class="mt-5 space-y-3 text-sm">
                     @foreach($footerNav as $item)
                         <li>
-                            <a href="{{ $item['url'] ?? route($item['route']) }}" class="inline-flex min-h-[28px] items-center gap-2 text-white/70 transition hover:text-brand-gold-light">
+                            <a href="{{ $item['url'] ?? route($item['route']) }}"
+                               @if($item['external'] ?? false) target="_blank" rel="noopener" @endif
+                               class="inline-flex min-h-[28px] items-center gap-2 text-white/70 transition hover:text-brand-gold-light">
                                 <span class="h-1 w-1 rounded-full bg-brand-gold"></span>{{ $item['label'] }}
                             </a>
                         </li>

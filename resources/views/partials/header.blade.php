@@ -7,6 +7,12 @@
         ['route' => 'events.index', 'label' => __('messages.nav.events')],
         ['route' => 'contact', 'label' => __('messages.nav.contact')],
     ];
+
+    // The blog lives on Blogger, so it joins the menu as an outbound link and
+    // only when Site Settings has a URL for it.
+    if ($blogUrl = $settings['blog_url'] ?? null) {
+        $nav[] = ['url' => $blogUrl, 'label' => __('messages.nav.blog'), 'external' => true];
+    }
 @endphp
 
 {{--
@@ -68,8 +74,9 @@
         {{-- Desktop nav --}}
         <div class="hidden shrink-0 items-center gap-1 xl:flex">
             @foreach($nav as $item)
-                @php $active = request()->routeIs($item['route']) || request()->routeIs(\Illuminate\Support\Str::before($item['route'], '.').'.*'); @endphp
-                <a href="{{ route($item['route']) }}"
+                @php $active = isset($item['route']) && (request()->routeIs($item['route']) || request()->routeIs(\Illuminate\Support\Str::before($item['route'], '.').'.*')); @endphp
+                <a href="{{ $item['url'] ?? route($item['route']) }}"
+                   @if($item['external'] ?? false) target="_blank" rel="noopener" @endif
                    class="relative rounded-full px-4 py-2 text-sm font-semibold transition {{ $active
                        ? 'text-white text-shadow-hero group-[.is-scrolled]:text-brand-maroon group-[.is-scrolled]:[text-shadow:none]'
                        : 'text-white/85 text-shadow-hero hover:text-white group-[.is-scrolled]:text-brand-ink/70 group-[.is-scrolled]:[text-shadow:none] group-[.is-scrolled]:hover:text-brand-maroon' }}">
@@ -100,8 +107,9 @@
          class="max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-brand-maroon/15 bg-brand-cream shadow-[0_18px_40px_-18px_rgba(43,35,32,0.45)] xl:hidden">
         <div class="container-x space-y-1 py-4">
             @foreach($nav as $item)
-                @php $mobileActive = request()->routeIs($item['route']) || request()->routeIs(\Illuminate\Support\Str::before($item['route'], '.').'.*'); @endphp
-                <a href="{{ route($item['route']) }}"
+                @php $mobileActive = isset($item['route']) && (request()->routeIs($item['route']) || request()->routeIs(\Illuminate\Support\Str::before($item['route'], '.').'.*')); @endphp
+                <a href="{{ $item['url'] ?? route($item['route']) }}"
+                   @if($item['external'] ?? false) target="_blank" rel="noopener" @endif
                    @if($mobileActive) aria-current="page" @endif
                    class="flex min-h-[48px] items-center rounded-xl px-4 py-3 text-base font-semibold transition {{ $mobileActive
                        ? 'bg-brand-maroon text-white'

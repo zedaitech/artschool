@@ -35,7 +35,7 @@ class ManageSettings extends Page implements HasForms
         'site_tagline',
         'contact_email', 'contact_phone', 'contact_whatsapp', 'contact_address', 'contact_hours', 'map_embed',
         'contact_person_name', 'contact_person_role',
-        'social_facebook', 'social_instagram', 'social_youtube', 'social_whatsapp',
+        'social_facebook', 'social_instagram', 'social_youtube', 'social_whatsapp', 'blog_url',
         'meta_title', 'meta_description', 'og_image',
         'stat_students', 'stat_years', 'stat_centers', 'stat_awards',
     ];
@@ -71,6 +71,9 @@ class ManageSettings extends Page implements HasForms
                         TextInput::make('social_instagram')->url()->label('Instagram'),
                         TextInput::make('social_youtube')->url()->label('YouTube'),
                         TextInput::make('social_whatsapp')->url()->label('WhatsApp link'),
+                        TextInput::make('blog_url')->url()->label('Blog')
+                            ->helperText('Linked from the main menu and footer. Leave empty to hide the link.')
+                            ->columnSpanFull(),
                     ]),
                 Section::make('Homepage statistics')
                     ->columns(4)
