@@ -5,6 +5,7 @@ return [
     'nav' => [
         'home' => 'Home',
         'centers' => 'Training Centres',
+        'franchise' => 'Franchise',
         'gallery' => 'Gallery',
         'events' => 'Events',
         'contact' => 'Contact',
@@ -171,6 +172,182 @@ return [
         'count' => ':count centres · classes every day of the week',
     ],
 
+    // Franchise programme
+    'franchise' => [
+        'eyebrow' => 'Franchise Opportunity',
+        'title' => 'Start Your Own Art School',
+        'text' => 'Partner with a trusted, growing art education brand. Bring quality art education to your city with a one-time fee, no royalty and complete support from our head office.',
+        'hero_subtitle' => 'Partner with a trusted and growing art education brand — turn your passion into a successful enterprise.',
+
+        // Headline offer
+        'offer_eyebrow' => 'The Offer',
+        'offer_title' => 'A One-Time Fee. Nothing Hidden.',
+        'fee_label' => 'One-time franchise fee',
+        'fee_note' => 'Payable once, at the start of the agreement.',
+        'assurances' => [
+            'No royalty fees',
+            'No hidden charges',
+            'Government MSME (Udyam) registered institution',
+        ],
+
+        // Why us
+        'why_eyebrow' => 'Why Choose Us',
+        'why_title' => 'Why Choose Our Franchise?',
+        'why' => [
+            ['title' => 'Established Brand', 'text' => 'A trusted name in art education since 2018, with a proven, structured teaching model.'],
+            ['title' => 'Low Investment, High Impact', 'text' => 'An affordable entry cost with excellent growth potential and no recurring royalty.'],
+            ['title' => 'Flexible Class Timings', 'text' => 'Run the centre around your schedule — weekday, weekend or evening batches.'],
+            ['title' => 'Your Own Art Academy', 'text' => 'Build and grow a creative institution that carries your effort and your community.'],
+            ['title' => 'Competitions & Exhibitions', 'text' => 'Your students take part in our state-level competitions and public exhibitions.'],
+            ['title' => 'Growing Demand', 'text' => 'Art education is now part of every child’s development, not an optional extra.'],
+        ],
+
+        // Support
+        'support_eyebrow' => 'What You Get',
+        'support_title' => 'Complete Franchise Support',
+        'support_text' => 'The head office stays involved after the agreement is signed — training, materials, promotion and academic guidance are part of the fee.',
+        'support' => [
+            'Teacher training and certification',
+            'Interview and recruitment assistance',
+            'Academic planning and syllabus support',
+            'Marketing and promotional guidance',
+            'Ongoing operational support',
+            'Annual quality observation and mentoring',
+            'Brand and institutional development',
+        ],
+        'materials_title' => 'Materials Provided by the Head Office',
+        'materials' => [
+            'Franchise certificate',
+            'Logo and branding materials',
+            'Promotional posters',
+            'Social media support',
+            'Teacher training',
+            'Academic guidance',
+            'Help organising competitions',
+        ],
+
+        // Audience
+        'ideal_eyebrow' => 'Who It Suits',
+        'ideal_title' => 'Ideal For',
+        'ideal' => [
+            'Art teachers',
+            'Homemakers',
+            'Educational entrepreneurs',
+            'Tuition centre owners',
+            'School teachers',
+            'Youth and creative professionals',
+        ],
+
+        // Rules & guidelines
+        'rules_eyebrow' => 'The Fine Print',
+        'rules_title' => 'Franchise Rules & Guidelines',
+        'rules_text' => 'Read these before enquiring — they are the terms every franchise partner agrees to.',
+        'rules' => [
+            [
+                'title' => 'Franchise Fee',
+                'items' => [
+                    'One-time franchise fee of :fee.',
+                    'No royalty fee.',
+                    'No hidden or additional charges.',
+                ],
+            ],
+            [
+                'title' => 'Franchise Term',
+                'items' => [
+                    'Initial agreement period of :years years.',
+                    'Renewable based on performance and compliance.',
+                ],
+            ],
+            [
+                'title' => 'Use of Brand Name',
+                'items' => [
+                    'The franchisee may use the name “Shree Narayana Guru School of Art” only during the agreement period.',
+                    'The logo, syllabus, certificates and promotional materials remain the property of the head office.',
+                ],
+            ],
+            [
+                'title' => 'Infrastructure Requirements',
+                'items' => [
+                    'A classroom of at least :area.',
+                    'Proper lighting and ventilation.',
+                    'Tables, chairs, a whiteboard and an art display area.',
+                    'A safe, clean and student-friendly environment.',
+                ],
+            ],
+            [
+                'title' => 'Academic Standards',
+                'items' => [
+                    'Follow the prescribed syllabus and curriculum.',
+                    'Maintain quality teaching standards.',
+                    'Conduct regular assessments and competitions.',
+                ],
+            ],
+            [
+                'title' => 'Teacher Qualifications',
+                'items' => [
+                    'Art teachers must be skilled in drawing and painting.',
+                    'Teacher training is provided by the head office.',
+                    'Professional conduct is required at all times.',
+                ],
+            ],
+            [
+                'title' => 'Student Admissions',
+                'items' => [
+                    'Admissions follow the institution’s guidelines.',
+                    'Student records must be maintained properly.',
+                    'Fee collection remains with the franchisee.',
+                ],
+            ],
+            [
+                'title' => 'Quality Monitoring',
+                'items' => [
+                    'The head office may inspect and review academic quality.',
+                    'Suggestions for improvement must be implemented.',
+                ],
+            ],
+            [
+                'title' => 'Certificates',
+                'items' => [
+                    'Students completing a course may receive certificates approved by the institution.',
+                ],
+            ],
+            [
+                'title' => 'Ethical Standards',
+                'items' => [
+                    'Political activity under the institution’s name is prohibited.',
+                    'Activities damaging the institution’s reputation are strictly prohibited.',
+                    'Unauthorised use of the logo or certificates is prohibited.',
+                ],
+            ],
+            [
+                'title' => 'Termination',
+                'items' => [
+                    'Misuse of the institution’s name.',
+                    'Poor academic standards.',
+                    'Fraudulent or unlawful activity.',
+                    'Violation of the agreement terms.',
+                ],
+                'note' => 'The franchise may be terminated for any of the following:',
+            ],
+        ],
+
+        // Closing
+        'join_eyebrow' => 'Join Us',
+        'join_title' => 'Build a Meaningful Educational Venture',
+        'join_text' => 'Empower young minds through creativity, imagination and artistic excellence, while building a rewarding and sustainable educational enterprise in your own community.',
+        'quote' => 'Together, let’s shape tomorrow’s artists.',
+
+        'poster_alt' => 'Shree Narayana Guru School of Art franchise opportunity poster',
+        'poster_view' => 'View full poster',
+        'udyam_label' => 'Udyam Registration No.',
+
+        'form_title' => 'Franchise Enquiry',
+        'form_subtitle' => 'Tell us where you would like to open a centre and we will call you back with the full details.',
+        'form_place' => 'Town / city for your centre',
+        'form_submit' => 'Send Franchise Enquiry',
+        'cta_call' => 'Call for franchise details',
+    ],
+
     // Gallery
     'gallery' => [
         'all' => 'All Work',
@@ -319,6 +496,7 @@ return [
         'enquiry_intro' => 'Hello, I would like to enquire about art classes at Shree Narayana Guru School of Art.',
         'admission_intro' => 'Hello, I would like to enquire about admission at Shree Narayana Guru School of Art.',
         'floating_intro' => 'Hello, I would like to know more about the art classes at Shree Narayana Guru School of Art.',
+        'franchise_intro' => 'Hello, I would like to enquire about the franchise opportunity at Shree Narayana Guru School of Art.',
     ],
 
     // Admissions

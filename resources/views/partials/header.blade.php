@@ -2,6 +2,7 @@
     $nav = [
         ['route' => 'home', 'label' => __('messages.nav.home')],
         ['route' => 'centers.index', 'label' => __('messages.nav.centers')],
+        ['route' => 'franchise', 'label' => __('messages.nav.franchise')],
         ['route' => 'gallery', 'label' => __('messages.nav.gallery')],
         ['route' => 'events.index', 'label' => __('messages.nav.events')],
         ['route' => 'contact', 'label' => __('messages.nav.contact')],

@@ -7,6 +7,7 @@ use App\Models\TrainingCenter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -18,12 +19,14 @@ class ContactController extends Controller
     }
 
     /**
-     * Handles both the general contact form and the admissions enquiry form.
+     * Handles every public enquiry form — contact, admissions and franchise.
+     * They differ only in `type`, which drives the admin label and the intro
+     * line of the WhatsApp message.
      */
     public function store(Request $request)
     {
         $data = $request->validate([
-            'type' => ['nullable', 'in:contact,admission'],
+            'type' => ['nullable', Rule::in(array_keys(Enquiry::TYPES))],
             'name' => ['required', 'string', 'max:120'],
             'email' => ['nullable', 'email', 'max:160'],
             'phone' => ['required', 'string', 'max:40'],
@@ -57,10 +60,13 @@ class ContactController extends Controller
      */
     protected function whatsappMessage(Enquiry $enquiry): string
     {
+        $intros = [
+            'admission' => 'messages.whatsapp.admission_intro',
+            'franchise' => 'messages.whatsapp.franchise_intro',
+        ];
+
         $lines = [
-            $enquiry->type === 'admission'
-                ? __('messages.whatsapp.admission_intro')
-                : __('messages.whatsapp.enquiry_intro'),
+            __($intros[$enquiry->type] ?? 'messages.whatsapp.enquiry_intro'),
             '',
             __('messages.contact.name').': '.$enquiry->name,
             __('messages.contact.phone').': '.$enquiry->phone,

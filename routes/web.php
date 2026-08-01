@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SitemapController;
@@ -35,6 +36,8 @@ Route::group([
     Route::get('/', HomeController::class)->name('home');
 
     Route::get('/'.__('routes.centers'), [TrainingCenterController::class, 'index'])->name('centers.index');
+
+    Route::get('/'.__('routes.franchise'), [FranchiseController::class, 'show'])->name('franchise');
 
     Route::get('/'.__('routes.gallery'), [GalleryController::class, 'index'])->name('gallery');
 

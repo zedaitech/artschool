@@ -1,14 +1,22 @@
-@props(['type' => 'contact', 'centers' => null, 'selectedCenter' => null, 'submitLabel' => null])
+{{-- `placeLabel` swaps the centre dropdown for a free-text box: a franchise
+     enquirer is naming a town we do not teach in yet, not picking an existing
+     centre. Both write to the same `training_center` field. --}}
+@props(['type' => 'contact', 'centers' => null, 'selectedCenter' => null, 'submitLabel' => null, 'placeLabel' => null])
 
 @php
+    $waIntros = [
+        'admission' => 'messages.whatsapp.admission_intro',
+        'franchise' => 'messages.whatsapp.franchise_intro',
+    ];
+
     // Labels are baked in here so the WhatsApp message the visitor sends is
     // written in the language they are browsing the site in.
     $waLabels = [
-        'intro' => $type === 'admission' ? __('messages.whatsapp.admission_intro') : __('messages.whatsapp.enquiry_intro'),
+        'intro' => __($waIntros[$type] ?? 'messages.whatsapp.enquiry_intro'),
         'name' => __('messages.contact.name'),
         'phone' => __('messages.contact.phone'),
         'email' => __('messages.contact.email'),
-        'center' => __('messages.contact.center'),
+        'center' => $placeLabel ?? __('messages.contact.center'),
         'message' => __('messages.contact.message'),
     ];
 @endphp
@@ -57,7 +65,14 @@
         @error('email')<p class="mt-1 text-xs text-brand-maroon">{{ $message }}</p>@enderror
     </div>
 
-    @if($centers && $centers->count())
+    @if($placeLabel)
+        <div>
+            <label for="ef-place" class="mb-1.5 block text-sm font-semibold text-brand-ink/80">{{ $placeLabel }}</label>
+            <input id="ef-place" name="training_center" type="text" value="{{ old('training_center') }}"
+                   class="w-full rounded-xl border-brand-ink/15 bg-white px-4 py-3 text-sm shadow-sm transition focus:border-brand-maroon focus:ring-brand-maroon/30">
+            @error('training_center')<p class="mt-1 text-xs text-brand-maroon">{{ $message }}</p>@enderror
+        </div>
+    @elseif($centers && $centers->count())
         <div>
             <label for="ef-center" class="mb-1.5 block text-sm font-semibold text-brand-ink/80">{{ __('messages.contact.center') }}</label>
             <select id="ef-center" name="training_center"

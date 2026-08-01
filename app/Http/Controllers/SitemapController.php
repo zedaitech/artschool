@@ -21,6 +21,7 @@ class SitemapController extends Controller
     protected const PAGES = [
         null => ['weekly', '1.0'],              // the locale root, e.g. /en
         'routes.centers' => ['weekly', '0.9'],
+        'routes.franchise' => ['monthly', '0.8'],
         'routes.events' => ['weekly', '0.8'],
         'routes.gallery' => ['monthly', '0.7'],
         'routes.contact' => ['monthly', '0.7'],

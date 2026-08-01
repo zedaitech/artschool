@@ -30,5 +30,6 @@ class Enquiry extends Model
     public const TYPES = [
         'contact' => 'Contact message',
         'admission' => 'Admission enquiry',
+        'franchise' => 'Franchise enquiry',
     ];
 }

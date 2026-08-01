@@ -4,6 +4,7 @@
 // shareable URLs — only the /en or /kn prefix changes.
 return [
     'centers' => 'training-centres',
+    'franchise' => 'franchise',
     'gallery' => 'gallery',
     'events' => 'events',
     'contact' => 'contact',
