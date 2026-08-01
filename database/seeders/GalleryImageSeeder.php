@@ -14,6 +14,9 @@ class GalleryImageSeeder extends Seeder
             ['/images/hero/students-drawing-class.jpg', 'Drawing Class in Progress', 'ನಡೆಯುತ್ತಿರುವ ಚಿತ್ರಕಲಾ ತರಗತಿ'],
             ['/images/hero/students-drawing-lineup.jpg', 'Students at Work', 'ಕಲಿಕೆಯಲ್ಲಿ ತೊಡಗಿದ ವಿದ್ಯಾರ್ಥಿಗಳು'],
             ['/images/hero/students-artwork-hall.jpg', 'Student Artwork on Display', 'ಪ್ರದರ್ಶನದಲ್ಲಿ ವಿದ್ಯಾರ್ಥಿಗಳ ಕಲಾಕೃತಿಗಳು'],
+            ['/images/gallery/students-artwork-group.jpg', 'Young Artists With Their Work', 'ತಮ್ಮ ಕೃತಿಗಳೊಂದಿಗೆ ಪುಟ್ಟ ಕಲಾವಿದರು'],
+            ['/images/gallery/students-studio-lineup.jpg', 'A Studio Full of Colour', 'ಬಣ್ಣಗಳಿಂದ ತುಂಬಿದ ಸ್ಟುಡಿಯೋ'],
+            ['/images/gallery/students-nature-studies.jpg', 'Nature Studies on Display', 'ಪ್ರದರ್ಶನದಲ್ಲಿ ನಿಸರ್ಗ ಚಿತ್ರಗಳು'],
         ];
 
         foreach ($images as $i => [$path, $en, $kn]) {
