@@ -14,7 +14,7 @@ return [
     'account_number' => '002512100011256',
     'account_type' => 'Current Account (CA)',
     'bank' => 'Bharat Co-operative Bank (Mumbai) Limited',
-    'branch' => 'Mangalore – Hampankatta',
+    'branch' => 'Mangaluru – Hampankatta',
     'ifsc' => 'BCBM0000026',
     'upi_id' => '9483024279-3@axl',
     'qr' => 'images/donate-upi-qr.jpg',
