@@ -15,7 +15,7 @@ class SettingSeeder extends Seeder
             ['contact', 'contact_email', 'pandavarakallu@gmail.com'],
             ['contact', 'contact_phone', '+91 94830 24279'],
             ['contact', 'contact_whatsapp', '+91 94830 24279'],
-            ['contact', 'contact_address', 'Shree Narayana Guru School of Art, Temple Road, Mangaluru, Karnataka 575001'],
+            ['contact', 'contact_address', "Shree Narayana Guru School of Art\n1-284/1/4, Shree Mahaguru Krupa,\nAdkabail Road, Adka, Kotekar,\nVTC: Mangaluru, PO: Kotekar,\nDistrict: Dakshina Kannada – 575022\nKarnataka, India"],
             ['contact', 'contact_hours', 'Classes run every day of the week — see the centre timings'],
             ['contact', 'contact_person_name', 'Mr. Suresh K. Pandavarakallu'],
             ['contact', 'contact_person_role', 'Founder & Director'],

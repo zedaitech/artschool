@@ -34,7 +34,7 @@
                                 </div>
                                 <div>
                                     <p class="text-xs font-semibold uppercase tracking-wide text-brand-ink/50">{{ $b['label'] }}</p>
-                                    <p class="mt-1 font-medium text-brand-ink/85">{{ $b['value'] }}</p>
+                                    <p class="mt-1 whitespace-pre-line font-medium text-brand-ink/85">{{ $b['value'] }}</p>
                                 </div>
                             </div>
                         @endif

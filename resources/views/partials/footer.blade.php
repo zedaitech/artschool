@@ -64,7 +64,7 @@
                     @if($settings['contact_address'] ?? null)
                         <li class="flex gap-3">
                             <svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-                            <span>{{ $settings['contact_address'] }}</span>
+                            <span class="whitespace-pre-line">{{ $settings['contact_address'] }}</span>
                         </li>
                     @endif
                     @if($settings['contact_phone'] ?? null)

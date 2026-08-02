@@ -61,7 +61,8 @@ class ManageSettings extends Page implements HasForms
                             ->helperText('Shown on the contact page, e.g. "Mr. Suresh K. Pandavarakallu".'),
                         TextInput::make('contact_person_role')->label('Designation')
                             ->helperText('e.g. "Founder & Director".'),
-                        Textarea::make('contact_address')->rows(2)->columnSpanFull(),
+                        Textarea::make('contact_address')->rows(6)->columnSpanFull()
+                            ->helperText('Line breaks are preserved on the site.'),
                         Textarea::make('map_embed')->label('Google Maps embed URL')->rows(2)->columnSpanFull(),
                     ]),
                 Section::make('Social links')
