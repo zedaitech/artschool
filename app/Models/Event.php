@@ -13,14 +13,22 @@ class Event extends Model
     protected $fillable = [
         'title',
         'slug',
+        'kind',
         'excerpt',
         'body',
         'location',
         'starts_at',
         'ends_at',
         'image',
+        'video',
         'is_featured',
         'is_published',
+    ];
+
+    /** Competitions take entries; announcements simply happened. */
+    public const KINDS = [
+        'competition' => 'Competition',
+        'announcement' => 'Announcement',
     ];
 
     public array $translatable = [
@@ -43,6 +51,12 @@ class Event extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    /** An announcement reports something that happened; it takes no entries. */
+    public function isAnnouncement(): bool
+    {
+        return $this->kind === 'announcement';
     }
 
     /**

@@ -457,6 +457,8 @@ return [
         'eyebrow' => 'What’s On',
         'view_details' => 'View Details',
         'closing_date' => 'Last Date for Submission',
+        'announcement' => 'Announcement',
+        'video' => 'Video from the occasion',
         'entries_open' => 'Entries Open',
         'entries_closed' => 'Entries Closed',
         'details' => 'Event Details',

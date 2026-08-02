@@ -25,6 +25,21 @@
                     <div class="prose-heritage mt-8">{!! $event->body !!}</div>
                 @endif
 
+                @if($event->video)
+                    {{-- Footage of the occasion. `preload="metadata"` keeps the
+                         page light: the browser fetches enough for the first
+                         frame and the duration, not the whole file. --}}
+                    <figure class="mt-10">
+                        <video controls preload="metadata" playsinline
+                               class="w-full rounded-2xl bg-brand-ink shadow-soft ring-1 ring-black/5">
+                            <source src="{{ media_url($event->video) }}" type="video/mp4">
+                        </video>
+                        <figcaption class="mt-3 text-xs uppercase tracking-[0.18em] text-brand-ink/45">
+                            {{ __('messages.events.video') }}
+                        </figcaption>
+                    </figure>
+                @endif
+
                 <div class="mt-10 flex flex-wrap gap-4">
                     <a href="{{ route('contact') }}" class="btn-gold">{{ __('messages.enquire_now') }}</a>
                     <a href="{{ route('events.index') }}" class="btn-outline">
@@ -54,14 +69,14 @@
                 <dl class="mt-8 space-y-5 rounded-2xl bg-brand-gold-soft p-7 ring-1 ring-brand-gold/20">
                     @if($event->starts_at)
                         <div>
-                            <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-maroon">{{ __('messages.events.closing_date') }}</dt>
+                            <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-maroon">{{ $event->isAnnouncement() ? __('messages.events.when') : __('messages.events.closing_date') }}</dt>
                             <dd class="mt-1 font-display text-2xl text-brand-ink">{{ $event->starts_at->translatedFormat('j F Y') }}</dd>
                         </div>
                     @endif
 
                     @if($event->location)
                         <div>
-                            <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-maroon">{{ __('messages.events.send_to') }}</dt>
+                            <dt class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-maroon">{{ $event->isAnnouncement() ? __('messages.events.where') : __('messages.events.send_to') }}</dt>
                             <dd class="mt-1 whitespace-pre-line text-sm leading-relaxed text-brand-ink/75">{{ $event->location }}</dd>
                         </div>
                     @endif
