@@ -31,6 +31,7 @@
                          frame and the duration, not the whole file. --}}
                     <figure class="mt-10">
                         <video controls preload="metadata" playsinline
+                               @if($event->image) poster="{{ media_url($event->image) }}" @endif
                                class="w-full rounded-2xl bg-brand-ink shadow-soft ring-1 ring-black/5">
                             <source src="{{ media_url($event->video) }}" type="video/mp4">
                         </video>
