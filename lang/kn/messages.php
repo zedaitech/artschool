@@ -10,6 +10,7 @@ return [
         'events' => 'ಕಾರ್ಯಕ್ರಮಗಳು',
         'contact' => 'ಸಂಪರ್ಕ',
         'blog' => 'ಬ್ಲಾಗ್',
+        'discover' => 'ವಿಶೇಷ',
     ],
 
     // Global

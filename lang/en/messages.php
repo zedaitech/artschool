@@ -10,6 +10,7 @@ return [
         'events' => 'Events',
         'contact' => 'Contact',
         'blog' => 'Blog',
+        'discover' => 'Discover',
     ],
 
     // Global

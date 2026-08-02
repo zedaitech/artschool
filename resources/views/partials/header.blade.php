@@ -1,18 +1,40 @@
 @php
+    /*
+     | Gallery, Events and the blog sit under one "Discover" menu. Seven
+     | top-level items left the school's name truncated at every width the
+     | desktop nav appears at; folding the three browsing destinations into a
+     | dropdown buys back the room, and keeps the four things a visitor comes
+     | to do — find a centre, ask about a franchise, get in touch — one click
+     | away.
+     */
+    $discover = [
+        ['route' => 'gallery', 'label' => __('messages.nav.gallery')],
+        ['route' => 'events.index', 'label' => __('messages.nav.events')],
+    ];
+
+    // The blog lives on Blogger, so it joins as an outbound link and only when
+    // Site Settings has a URL for it.
+    if ($blogUrl = $settings['blog_url'] ?? null) {
+        $discover[] = ['url' => $blogUrl, 'label' => __('messages.nav.blog'), 'external' => true];
+    }
+
     $nav = [
         ['route' => 'home', 'label' => __('messages.nav.home')],
         ['route' => 'centers.index', 'label' => __('messages.nav.centers')],
         ['route' => 'franchise', 'label' => __('messages.nav.franchise')],
-        ['route' => 'gallery', 'label' => __('messages.nav.gallery')],
-        ['route' => 'events.index', 'label' => __('messages.nav.events')],
+        ['label' => __('messages.nav.discover'), 'children' => $discover],
         ['route' => 'contact', 'label' => __('messages.nav.contact')],
     ];
 
-    // The blog lives on Blogger, so it joins the menu as an outbound link and
-    // only when Site Settings has a URL for it.
-    if ($blogUrl = $settings['blog_url'] ?? null) {
-        $nav[] = ['url' => $blogUrl, 'label' => __('messages.nav.blog'), 'external' => true];
-    }
+    // A dropdown counts as active whenever the page inside it is the one open.
+    $isActive = function (array $item): bool {
+        if (! isset($item['route'])) {
+            return false;
+        }
+
+        return request()->routeIs($item['route'])
+            || request()->routeIs(\Illuminate\Support\Str::before($item['route'], '.').'.*');
+    };
 @endphp
 
 {{--
@@ -74,15 +96,55 @@
         {{-- Desktop nav --}}
         <div class="hidden shrink-0 items-center gap-1 xl:flex">
             @foreach($nav as $item)
-                @php $active = isset($item['route']) && (request()->routeIs($item['route']) || request()->routeIs(\Illuminate\Support\Str::before($item['route'], '.').'.*')); @endphp
-                <a href="{{ $item['url'] ?? route($item['route']) }}"
-                   @if($item['external'] ?? false) target="_blank" rel="noopener" @endif
-                   class="relative rounded-full px-4 py-2 text-sm font-semibold transition {{ $active
-                       ? 'text-white text-shadow-hero group-[.is-scrolled]:text-brand-maroon group-[.is-scrolled]:[text-shadow:none]'
-                       : 'text-white/85 text-shadow-hero hover:text-white group-[.is-scrolled]:text-brand-ink/70 group-[.is-scrolled]:[text-shadow:none] group-[.is-scrolled]:hover:text-brand-maroon' }}">
-                    {{ $item['label'] }}
-                    @if($active)<span class="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-gold-gradient"></span>@endif
-                </a>
+                @php
+                    $children = $item['children'] ?? null;
+                    $active = $children
+                        ? collect($children)->contains(fn (array $c) => $isActive($c))
+                        : $isActive($item);
+                    $linkClass = 'relative rounded-full px-4 py-2 text-sm font-semibold transition '.($active
+                        ? 'text-white text-shadow-hero group-[.is-scrolled]:text-brand-maroon group-[.is-scrolled]:[text-shadow:none]'
+                        : 'text-white/85 text-shadow-hero hover:text-white group-[.is-scrolled]:text-brand-ink/70 group-[.is-scrolled]:[text-shadow:none] group-[.is-scrolled]:hover:text-brand-maroon');
+                @endphp
+
+                @if($children)
+                    {{-- Opens on hover for the mouse, on click for keyboard and
+                         touch; the padded wrapper keeps the pointer inside the
+                         hover area while it travels down to the panel. --}}
+                    <div x-data="{ menu: false }" @mouseenter="menu = true" @mouseleave="menu = false"
+                         @focusin="menu = true" @focusout="menu = false" class="relative">
+                        <button type="button" @click="menu = !menu" :aria-expanded="menu"
+                                class="{{ $linkClass }} inline-flex items-center gap-1.5">
+                            {{ $item['label'] }}
+                            <svg class="h-3.5 w-3.5 transition-transform" :class="menu && 'rotate-180'"
+                                 fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/>
+                            </svg>
+                            @if($active)<span class="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-gold-gradient"></span>@endif
+                        </button>
+
+                        <div x-show="menu" x-cloak x-transition.opacity
+                             class="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3">
+                            <div class="overflow-hidden rounded-2xl border border-brand-gold/30 bg-brand-cream p-2 shadow-[0_18px_40px_-18px_rgba(43,35,32,0.45)]">
+                                @foreach($children as $child)
+                                    <a href="{{ $child['url'] ?? route($child['route']) }}"
+                                       @if($child['external'] ?? false) target="_blank" rel="noopener" @endif
+                                       class="flex min-h-[40px] items-center gap-2 rounded-xl px-3.5 text-sm font-semibold transition {{ $isActive($child)
+                                           ? 'bg-brand-maroon text-white'
+                                           : 'text-brand-ink/75 hover:bg-white hover:text-brand-maroon' }}">
+                                        {{ $child['label'] }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ $item['url'] ?? route($item['route']) }}"
+                       @if($item['external'] ?? false) target="_blank" rel="noopener" @endif
+                       class="{{ $linkClass }}">
+                        {{ $item['label'] }}
+                        @if($active)<span class="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-gold-gradient"></span>@endif
+                    </a>
+                @endif
             @endforeach
         </div>
 
@@ -106,16 +168,34 @@
     <div x-show="open" x-cloak x-transition
          class="max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-brand-maroon/15 bg-brand-cream shadow-[0_18px_40px_-18px_rgba(43,35,32,0.45)] xl:hidden">
         <div class="container-x space-y-1 py-4">
+            {{-- The mobile menu is already a vertical list with room to spare,
+                 so the group flattens into a labelled section rather than a
+                 second thing to tap open. --}}
             @foreach($nav as $item)
-                @php $mobileActive = isset($item['route']) && (request()->routeIs($item['route']) || request()->routeIs(\Illuminate\Support\Str::before($item['route'], '.').'.*')); @endphp
-                <a href="{{ $item['url'] ?? route($item['route']) }}"
-                   @if($item['external'] ?? false) target="_blank" rel="noopener" @endif
-                   @if($mobileActive) aria-current="page" @endif
-                   class="flex min-h-[48px] items-center rounded-xl px-4 py-3 text-base font-semibold transition {{ $mobileActive
-                       ? 'bg-brand-maroon text-white'
-                       : 'text-brand-ink/80 hover:bg-white hover:text-brand-maroon' }}">
-                    {{ $item['label'] }}
-                </a>
+                @if($children = $item['children'] ?? null)
+                    <p class="px-4 pb-1 pt-4 text-xs font-semibold uppercase tracking-[0.18em] text-brand-ink/40">
+                        {{ $item['label'] }}
+                    </p>
+                    @foreach($children as $child)
+                        <a href="{{ $child['url'] ?? route($child['route']) }}"
+                           @if($child['external'] ?? false) target="_blank" rel="noopener" @endif
+                           @if($isActive($child)) aria-current="page" @endif
+                           class="flex min-h-[48px] items-center rounded-xl px-4 py-3 text-base font-semibold transition {{ $isActive($child)
+                               ? 'bg-brand-maroon text-white'
+                               : 'text-brand-ink/80 hover:bg-white hover:text-brand-maroon' }}">
+                            {{ $child['label'] }}
+                        </a>
+                    @endforeach
+                @else
+                    <a href="{{ $item['url'] ?? route($item['route']) }}"
+                       @if($item['external'] ?? false) target="_blank" rel="noopener" @endif
+                       @if($isActive($item)) aria-current="page" @endif
+                       class="flex min-h-[48px] items-center rounded-xl px-4 py-3 text-base font-semibold transition {{ $isActive($item)
+                           ? 'bg-brand-maroon text-white'
+                           : 'text-brand-ink/80 hover:bg-white hover:text-brand-maroon' }}">
+                        {{ $item['label'] }}
+                    </a>
+                @endif
             @endforeach
             <a href="{{ route('contact') }}" class="btn-primary mt-2 w-full">{{ __('messages.enquire_now') }}</a>
             @if($headerWhatsapp ?? false)
