@@ -23,6 +23,22 @@ return [
             'report' => false,
         ],
 
+        /*
+         | The site's own artwork — posters, hero images, the crest — lives in
+         | public/ and is committed, so it survives a deploy without needing the
+         | storage symlink. Admin uploads that replace those files have to land
+         | in the same place, or the upload field cannot see what is already
+         | there and would clear the field on save.
+         */
+        'public_root' => [
+            'driver' => 'local',
+            'root' => public_path(),
+            'url' => '/',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

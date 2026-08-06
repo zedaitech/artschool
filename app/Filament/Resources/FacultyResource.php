@@ -45,7 +45,8 @@ class FacultyResource extends Resource
                 ->schema([
                     Forms\Components\FileUpload::make('photo')
                         ->image()
-                        ->directory('faculty')
+                        ->disk('public_root')
+                        ->directory('images/faculty')
                         ->imageEditor()
                         ->columnSpanFull(),
                     Forms\Components\TextInput::make('sort_order')->numeric()->default(0),

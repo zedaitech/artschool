@@ -93,7 +93,8 @@ class TrainingCenterResource extends Resource
                 ->schema([
                     Forms\Components\FileUpload::make('image')
                         ->image()
-                        ->directory('training-centers')
+                        ->disk('public_root')
+                        ->directory('images/training-centres')
                         ->imageEditor()
                         ->columnSpanFull(),
                     Forms\Components\TextInput::make('icon')

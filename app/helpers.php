@@ -6,9 +6,11 @@ use Illuminate\Support\Str;
 
 if (! function_exists('media_url')) {
     /**
-     * Resolve an image reference to a usable URL. Seeded content uses absolute
-     * URLs (Unsplash); admin-uploaded content stores a path on the public disk.
-     * A single helper handles both so views stay clean.
+     * Resolve an image reference to a usable URL. Content stores one of three
+     * things: an absolute URL, a path relative to public/ (the committed
+     * artwork, and anything uploaded over it), or a path on the public storage
+     * disk (the older upload fields). A single helper handles all three so
+     * views stay clean.
      */
     function media_url(?string $path, ?string $fallback = null): ?string
     {
@@ -18,6 +20,12 @@ if (! function_exists('media_url')) {
 
         if (Str::startsWith($path, ['http://', 'https://', '//', '/'])) {
             return $path;
+        }
+
+        // A real file under public/ is served straight from there; only fall
+        // through to the storage disk for uploads that live behind the symlink.
+        if (is_file(public_path($path))) {
+            return '/'.$path;
         }
 
         return Storage::disk('public')->url($path);

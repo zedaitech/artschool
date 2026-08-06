@@ -42,7 +42,8 @@ class GalleryImageResource extends Resource
                     Forms\Components\FileUpload::make('image')
                         ->image()
                         ->required()
-                        ->directory('gallery')
+                        ->disk('public_root')
+                        ->directory('images/gallery')
                         ->imageEditor()
                         ->columnSpanFull(),
                     Forms\Components\TextInput::make('sort_order')->numeric()->default(0),

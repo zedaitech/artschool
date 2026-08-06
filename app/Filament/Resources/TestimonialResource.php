@@ -46,7 +46,8 @@ class TestimonialResource extends Resource
                 ->schema([
                     Forms\Components\FileUpload::make('photo')
                         ->image()
-                        ->directory('testimonials')
+                        ->disk('public_root')
+                        ->directory('images/testimonials')
                         ->imageEditor()
                         ->columnSpanFull(),
                     Forms\Components\TextInput::make('sort_order')->numeric()->default(0),

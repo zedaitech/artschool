@@ -48,7 +48,8 @@ class HeroSlideResource extends Resource
                 ->schema([
                     Forms\Components\FileUpload::make('image')
                         ->image()
-                        ->directory('hero')
+                        ->disk('public_root')
+                        ->directory('images/hero')
                         ->imageEditor()
                         ->columnSpanFull(),
                     Forms\Components\TextInput::make('sort_order')->numeric()->default(0),
