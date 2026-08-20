@@ -105,6 +105,14 @@ class EventResource extends Resource
                         ->maxSize(51200)
                         ->helperText('An MP4 up to 50 MB, played on the event page. The poster above is shown before it starts.')
                         ->columnSpanFull(),
+                    Forms\Components\TextInput::make('youtube_url')
+                        ->label('YouTube link (optional)')
+                        ->url()
+                        ->placeholder('https://www.youtube.com/watch?v=…')
+                        ->rule('regex:~(youtu\.be/|youtube(-nocookie)?\.com/)~')
+                        ->validationMessages(['regex' => 'Paste a YouTube watch, share or Shorts link.'])
+                        ->helperText('Embedded on the event page. Use this for longer footage instead of uploading a file.')
+                        ->columnSpanFull(),
                     Forms\Components\Toggle::make('is_featured')->label('Feature on homepage'),
                     Forms\Components\Toggle::make('is_published')->label('Live')->default(true),
                 ]),
@@ -130,7 +138,7 @@ class EventResource extends Resource
                 Tables\Columns\IconColumn::make('video')
                     ->label('Video')
                     ->boolean()
-                    ->getStateUsing(fn (Event $record): bool => filled($record->video)),
+                    ->getStateUsing(fn (Event $record): bool => filled($record->video) || filled($record->youtube_url)),
                 Tables\Columns\IconColumn::make('is_featured')->boolean()->label('Featured'),
                 Tables\Columns\IconColumn::make('is_published')->boolean()->label('Live'),
             ])

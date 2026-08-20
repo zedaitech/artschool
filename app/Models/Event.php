@@ -21,6 +21,7 @@ class Event extends Model
         'ends_at',
         'image',
         'video',
+        'youtube_url',
         'is_featured',
         'is_published',
     ];
@@ -68,6 +69,23 @@ class Event extends Model
         $closes = $this->ends_at ?? $this->starts_at;
 
         return $closes === null || $closes->endOfDay()->isFuture();
+    }
+
+    /**
+     * The embeddable video id from whatever YouTube link the admin pasted:
+     * watch?v=, youtu.be/, shorts/, embed/ and live/ forms are all accepted.
+     */
+    public function youtubeId(): ?string
+    {
+        if (blank($this->youtube_url)) {
+            return null;
+        }
+
+        if (preg_match('~(?:youtu\.be/|youtube(?:-nocookie)?\.com/(?:watch\?(?:.*&)?v=|(?:embed|shorts|live|v)/))([A-Za-z0-9_-]{11})~', $this->youtube_url, $m)) {
+            return $m[1];
+        }
+
+        return null;
     }
 
     public function scopePublished(Builder $query): Builder

@@ -41,6 +41,25 @@
                     </figure>
                 @endif
 
+                @if($youtubeId = $event->youtubeId())
+                    {{-- Embedded via the privacy-enhanced domain so YouTube
+                         sets no cookies until the visitor presses play. --}}
+                    <figure class="mt-10">
+                        <div class="aspect-video overflow-hidden rounded-2xl bg-brand-ink shadow-soft ring-1 ring-black/5">
+                            <iframe src="https://www.youtube-nocookie.com/embed/{{ $youtubeId }}"
+                                    title="{{ $event->title }}"
+                                    loading="lazy"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin"
+                                    allowfullscreen
+                                    class="h-full w-full"></iframe>
+                        </div>
+                        <figcaption class="mt-3 text-xs uppercase tracking-[0.18em] text-brand-ink/45">
+                            {{ __('messages.events.video') }}
+                        </figcaption>
+                    </figure>
+                @endif
+
                 <div class="mt-10 flex flex-wrap gap-4">
                     <a href="{{ route('contact') }}" class="btn-gold">{{ __('messages.enquire_now') }}</a>
                     <a href="{{ route('events.index') }}" class="btn-outline">
